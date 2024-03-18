@@ -1,0 +1,125 @@
+Question 1:  Write a program that demonstrates widening conversion from int to double and prints the result.
+---------------------------------------
+
+
+
+public class Widening {
+    public static void main(String[] args) {
+        // Declare and initialize an integer variable
+        int intValue = 10;
+
+        // Perform widening conversion from int to double
+        double doubleValue = intValue;
+
+        // Print the result
+        System.out.println("Widening Conversion from int to double:");
+        System.out.println("Integer Value: " + intValue);
+        System.out.println("Double Value: " + doubleValue);
+    }
+}
+
+--------------------------------------------
+--------------------------------------------
+
+
+Question 2: Create a program that demonstrates narrowing conversion from double to int and prints the result.
+-----------------------------------------
+
+import java.util.Scanner;
+
+public class Narrowing {
+    public static void main(String[] args) {
+        // Scanner object to read input from the user
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt user to enter a double value
+        System.out.print("Enter a double value: ");
+        double doubleValue = scanner.nextDouble();
+
+        // Close the Scanner object
+        scanner.close();
+
+        // Perform narrowing conversion from double to int
+        int intValue = (int) doubleValue;
+
+        // Printing the result
+        System.out.println("Narrowing Conversion from double to int:");
+        System.out.println("Double Value: " + doubleValue);
+        System.out.println("Integer Value: " + intValue);
+    }
+}
+
+
+-----------------------------------------
+-----------------------------------------
+
+Question 3: Write a program that performs arithmetic operations involving different data types (int, double, float)
+and observes how Java handles widening conversions automatically.
+
+-----------------------------------------
+
+public class WideningConversionDemo {
+    public static void main(String[] args) {
+        int intValue = 20;
+        double doubleValue = 40.5;
+        float floatValue = 30.7f;
+
+        // Addition
+        double result1 = intValue + doubleValue; // int is widened to double
+        float result2 = floatValue + intValue; // int is widened to float
+
+        // Subtraction
+        double result3 = doubleValue - floatValue; // float is widened to double
+        float result4 = floatValue - intValue; // int is widened to float
+
+        // Multiplication
+        double result5 = intValue * floatValue; // int is widened to float, then promoted to double
+
+        // Division
+        double result6 = doubleValue / intValue; // int is widened to double
+        float result7 = floatValue / intValue; // int is widened to float
+
+        // Print results
+        System.out.println("Addition: " + result1);
+        System.out.println("Addition: " + result2);
+        System.out.println("Subtraction: " + result3);
+        System.out.println("Subtraction: " + result4);
+        System.out.println("Multiplication: " + result5);
+        System.out.println("Division: " + result6);
+        System.out.println("Division: " + result7);
+    }
+}
+
+------------------------------------------------------
+
+Question 4: Write a Program that demonstrates widening conversion from int to (double,float, boolean, string) and
+prints the result.
+
+------------------------------------------------------
+
+
+public class WideningConversionDemo {
+    public static void main(String[] args) {
+        int intValue = 10;
+
+        // Widening Conversion to double
+        double doubleValue = intValue;
+
+        // Widening Conversion to float
+        float floatValue = intValue;
+
+        // Widening Conversion to String
+        String stringValue = String.valueOf(intValue);
+
+        // Printing the results
+        System.out.println("Widening Conversion from int to double: " + doubleValue);
+        System.out.println("Widening Conversion from int to float: " + floatValue);
+        System.out.println("Widening Conversion from int to String: " + stringValue);
+
+        // Widening Conversion to boolean is not applicable
+        //boolean booleanValue = intValue; // This line would result in a compilation error
+    }
+}
+
+------------------------------------------------
+-------------------------------------------------
