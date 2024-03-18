@@ -1,0 +1,149 @@
+Question 1: Build a class Student which contains details about the Student and compile and run its
+instance.
+------------------------------------
+------------------------------------
+
+
+public class Student {
+    // Instance variables
+    private String name;
+    private int rollNumber;
+    private double marks;
+
+    // Constructor
+    public Student(String name, int rollNumber, double marks) {
+        this.name = name;
+        this.rollNumber = rollNumber;
+        this.marks = marks;
+    }
+
+    // Getter methods
+    public String getName() {
+        return name;
+    }
+
+    public int getRollNumber() {
+        return rollNumber;
+    }
+
+    public double getMarks() {
+        return marks;
+    }
+
+    // Setter methods
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setRollNumber(int rollNumber) {
+        this.rollNumber = rollNumber;
+    }
+
+    public void setMarks(double marks) {
+        this.marks = marks;
+    }
+
+    // Method to display student details
+    public void displayDetails() {
+        System.out.println("Name: " + name);
+        System.out.println("Roll Number: " + rollNumber);
+        System.out.println("Marks: " + marks);
+    }
+
+    // Main method for testing the Student class
+    public static void main(String[] args) {
+        // Creating an instance of Student
+        Student student1 = new Student("John", 101, 85.5);
+
+        // Displaying student details
+        System.out.println("Student 1 Details:");
+        student1.displayDetails();
+    }
+}
+
+
+---------------------------------------------
+-----------------------------------------------
+
+Question 2: Write a Vehicle class with overloaded methods that have a different number of parameters.
+Demonstrate calling these overloaded methods with various numbers of arguments.
+
+-----------------------------------------------
+
+public class Vehicle {
+    // Method with no parameters
+    public void display() {
+        System.out.println("This is a vehicle.");
+    }
+
+    // Method with one parameter
+    public void display(String type) {
+        System.out.println("This is a " + type + " vehicle.");
+    }
+
+    // Method with two parameters
+    public void display(String type, String color) {
+        System.out.println("This is a " + color + " " + type + " vehicle.");
+    }
+
+    // Method with three parameters
+    public void display(String type, String color, int year) {
+        System.out.println("This is a " + color + " " + year + " " + type + " vehicle.");
+    }
+
+    public static void main(String[] args) {
+        // Create an instance of Vehicle
+        Vehicle vehicle = new Vehicle();
+
+        // Call overloaded methods with various numbers of arguments
+        vehicle.display();  // Calls method with no parameters
+        vehicle.display("car");  // Calls method with one parameter
+        vehicle.display("bike", "red");  // Calls method with two parameters
+        vehicle.display("truck", "blue", 2022);  // Calls method with three parameters
+    }
+}
+
+----------------------------------------
+----------------------------------------
+
+Question: 3 - Create a class Employee with multiple overloaded methods that have different parameter types (e.g.,
+int, double, String). Demonstrate calling each overloaded method with appropriate arguments.
+---------------------------------------
+
+public class Employee {
+    // Method with int parameter
+    public void display(int employeeId) {
+        System.out.println("Employee ID: " + employeeId);
+    }
+
+    // Method with double parameter
+    public void display(double salary) {
+        System.out.println("Salary: $" + salary);
+    }
+
+    // Method with String parameter
+    public void display(String employeeName) {
+        System.out.println("Employee Name: " + employeeName);
+    }
+
+    // Method with multiple parameters of different types
+    public void display(int employeeId, String employeeName, double salary) {
+        System.out.println("Employee ID: " + employeeId);
+        System.out.println("Employee Name: " + employeeName);
+        System.out.println("Salary: $" + salary);
+    }
+
+    public static void main(String[] args) {
+        // Create an instance of Employee
+        Employee employee = new Employee();
+
+        // Call overloaded methods with appropriate arguments
+        employee.display(101);  // Calls method with int parameter
+        employee.display(50000.0);  // Calls method with double parameter
+        employee.display("John Doe");  // Calls method with String parameter
+        employee.display(102, "Jane Smith", 60000.0);  // Calls method with multiple parameters
+    }
+}
+
+---------------------------------------------
+---------------------------------------------
