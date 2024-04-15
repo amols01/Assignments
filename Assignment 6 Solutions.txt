@@ -1,0 +1,434 @@
+PRN: 240340320012
+Name: Amol Sonawane
+
+Assignment 6:  Special Programs Series: Searching
+ 
+----------------------------------------------
+----------------------------------------------
+
+1. Linear Search [Solution]
+----------------------------------------------
+
+public class LinearSearch {
+    public static int linearSearch(int[] arr, int target) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == target) {
+                return i; // Return index of target if found
+            }
+        }
+        return -1; // Return -1 if target not found
+    }
+}
+
+
+
+----------------------------------------------
+----------------------------------------------
+
+2. Binary Search [Solution]
+----------------------------------------------
+
+public class BinarySearch {
+    public static int binarySearch(int[] arr, int target) {
+        int left = 0;
+        int right = arr.length - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (arr[mid] == target) {
+                return mid; // Return index of target if found
+            } else if (arr[mid] < target) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return -1; // Return -1 if target not found
+    }
+}
+
+
+
+----------------------------------------------
+----------------------------------------------
+
+3. Sort elements by frequency
+----------------------------------------------
+
+import java.util.*;
+
+public class SortElementsByFrequency {
+    public static void sortByFrequency(int[] arr) {
+        Map<Integer, Integer> frequencyMap = new HashMap<>();
+        for (int num : arr) {
+            frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
+        }
+
+        Arrays.sort(arr, (a, b) -> {
+            int freqCompare = Integer.compare(frequencyMap.get(b), frequencyMap.get(a));
+            if (freqCompare == 0) {
+                return Integer.compare(a, b);
+            }
+            return freqCompare;
+        });
+    }
+}
+
+----------------------------------------------
+----------------------------------------------
+
+4. Sort an array of 0s, 1s and 2s
+----------------------------------------------
+
+public class Sort012 {
+    public static void sort012(int[] arr) {
+        int low = 0;
+        int high = arr.length - 1;
+        int mid = 0;
+        while (mid <= high) {
+            switch (arr[mid]) {
+                case 0:
+                    swap(arr, low, mid);
+                    low++;
+                    mid++;
+                    break;
+                case 1:
+                    mid++;
+                    break;
+                case 2:
+                    swap(arr, mid, high);
+                    high--;
+                    break;
+            }
+        }
+    }
+
+    private static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+}
+
+
+
+----------------------------------------------
+----------------------------------------------
+
+5. Java Program to Check for balanced parenthesis by using Stacks
+----------------------------------------------
+import java.util.Stack;
+
+public class BalancedParentheses {
+    public static boolean isBalanced(String expression) {
+        Stack<Character> stack = new Stack<>();
+        for (int i = 0; i < expression.length(); i++) {
+            char ch = expression.charAt(i);
+            if (ch == '(' || ch == '{' || ch == '[') {
+                stack.push(ch);
+            } else if (ch == ')' || ch == '}' || ch == ']') {
+                if (stack.isEmpty()) {
+                    return false;
+                }
+                char top = stack.pop();
+                if ((ch == ')' && top != '(') || (ch == '}' && top != '{') || (ch == ']' && top != '[')) {
+                    return false;
+                }
+            }
+        }
+        return stack.isEmpty();
+    }
+}
+
+
+----------------------------------------------
+----------------------------------------------
+
+6. Java Program to Implement Stack
+----------------------------------------------
+public class StackImplementation {
+    private int[] stack;
+    private int top;
+    private int capacity;
+
+    public StackImplementation(int capacity) {
+        this.capacity = capacity;
+        this.stack = new int[capacity];
+        this.top = -1;
+    }
+
+    public void push(int data) {
+        if (top == capacity - 1) {
+            System.out.println("Stack Overflow");
+            return;
+        }
+        stack[++top] = data;
+    }
+
+    public int pop() {
+        if (isEmpty()) {
+            System.out.println("Stack Underflow");
+            return -1;
+        }
+        return stack[top--];
+    }
+
+    public int peek() {
+        if (isEmpty()) {
+            System.out.println("Stack is empty");
+            return -1;
+        }
+        return stack[top];
+    }
+
+    public boolean isEmpty() {
+        return top == -1;
+    }
+}
+
+
+
+----------------------------------------------
+----------------------------------------------
+
+7. Java Program to Implement Queue
+----------------------------------------------
+public class QueueImplementation {
+    private int[] queue;
+    private int front, rear, size;
+
+    public QueueImplementation(int capacity) {
+        this.queue = new int[capacity];
+        this.front = 0;
+        this.rear = -1;
+        this.size = 0;
+    }
+
+    public void enqueue(int data) {
+        if (isFull()) {
+            System.out.println("Queue is full");
+            return;
+        }
+        rear = (rear + 1) % queue.length;
+        queue[rear] = data;
+        size++;
+    }
+
+    public int dequeue() {
+        if (isEmpty()) {
+            System.out.println("Queue is empty");
+            return -1;
+        }
+        int data = queue[front];
+        front = (front + 1) % queue.length;
+        size--;
+        return data;
+    }
+
+    public int peek() {
+        if (isEmpty()) {
+            System.out.println("Queue is empty");
+            return -1;
+        }
+        return queue[front];
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    public boolean isFull() {
+        return size == queue.length;
+    }
+}
+
+
+----------------------------------------------
+----------------------------------------------
+
+8. Java Program to Implement Dequeue.
+----------------------------------------------
+
+public class DequeueImplementation {
+    private int[] dequeue;
+    private int front, rear, size;
+
+    public DequeueImplementation(int capacity) {
+        this.dequeue = new int[capacity];
+        this.front = 0;
+        this.rear = -1;
+        this.size = 0;
+    }
+
+    public void addFront(int data) {
+        if (isFull()) {
+            System.out.println("Dequeue is full");
+            return;
+        }
+        front = (front - 1 + dequeue.length) % dequeue.length;
+        dequeue[front] = data;
+        size++;
+    }
+
+    public void addRear(int data) {
+        if (isFull()) {
+            System.out.println("Dequeue is full");
+            return;
+        }
+        rear = (rear + 1) % dequeue.length;
+        dequeue[rear] = data;
+        size++;
+    }
+
+    public int removeFront() {
+        if (isEmpty()) {
+            System.out.println("Dequeue is empty");
+            return -1;
+        }
+        int data = dequeue[front];
+        front = (front + 1) % dequeue.length;
+        size--;
+        return data;
+    }
+
+    public int removeRear() {
+        if (isEmpty()) {
+            System.out.println("Dequeue is empty");
+            return -1;
+        }
+        int data = dequeue[rear];
+        rear = (rear - 1 + dequeue.length) % dequeue.length;
+        size--;
+        return data;
+    }
+
+    public int peekFront() {
+        if (isEmpty()) {
+            System.out.println("Dequeue is empty");
+            return -1;
+        }
+        return dequeue[front];
+    }
+
+    public int peekRear() {
+        if (isEmpty()) {
+            System.out.println("Dequeue is empty");
+            return -1;
+        }
+        return dequeue[rear];
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    public boolean isFull() {
+        return size == dequeue.length;
+    }
+}
+
+
+----------------------------------------------
+----------------------------------------------
+
+9. Java Program to Implement Stack Using Two Queues
+----------------------------------------------
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class StackUsingTwoQueues {
+    private Queue<Integer> queue1;
+    private Queue<Integer> queue2;
+
+    public StackUsingTwoQueues() {
+        queue1 = new LinkedList<>();
+        queue2 = new LinkedList<>();
+    }
+
+    public void push(int data) {
+        queue2.add(data);
+        while (!queue1.isEmpty()) {
+            queue2.add(queue1.remove());
+        }
+        Queue<Integer> temp = queue1;
+        queue1 = queue2;
+        queue2 = temp;
+    }
+
+    public int pop() {
+        if (isEmpty()) {
+            System.out.println("Stack is empty");
+            return -1;
+        }
+        return queue1.remove();
+    }
+
+    public int peek() {
+        if (isEmpty()) {
+            System.out.println("Stack is empty");
+            return -1;
+        }
+        return queue1.peek();
+    }
+
+    public boolean isEmpty() {
+        return queue1.isEmpty();
+    }
+}
+
+----------------------------------------------
+----------------------------------------------
+
+10. Java Program to Implement Queue Using Two Stacks
+----------------------------------------------
+import java.util.Stack;
+
+public class QueueUsingTwoStacks {
+    private Stack<Integer> stack1;
+    private Stack<Integer> stack2;
+
+    public QueueUsingTwoStacks() {
+        stack1 = new Stack<>();
+        stack2 = new Stack<>();
+    }
+
+    public void enqueue(int data) {
+        stack1.push(data);
+    }
+
+    public int dequeue() {
+        if (isEmpty()) {
+            System.out.println("Queue is empty");
+            return -1;
+        }
+        if (stack2.isEmpty()) {
+            while (!stack1.isEmpty()) {
+                stack2.push(stack1.pop());
+            }
+        }
+        return stack2.pop();
+    }
+
+    public int peek() {
+        if (isEmpty()) {
+            System.out.println("Queue is empty");
+            return -1;
+        }
+        if (stack2.isEmpty()) {
+            while (!stack1.isEmpty()) {
+                stack2.push(stack1.pop());
+            }
+        }
+        return stack2.peek();
+    }
+
+    public boolean isEmpty() {
+        return stack1.isEmpty() && stack2.isEmpty();
+    }
+}
+
+
+----------------------------------------------
+----------------------------------------------
+
+
+

@@ -1,0 +1,277 @@
+PRN: 240340320012
+Name: Amol Sonawane
+
+Assignment 5: Logic Building Special Questions 
+----------------------------------------------
+----------------------------------------------
+
+
+1. Bubble Sort 
+----------------------------------------------
+public class BubbleSort {
+    public static void bubbleSort(int[] arr) {
+        int n = arr.length;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    // Swap arr[j] and arr[j+1]
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+    }
+}
+
+
+----------------------------------------------
+----------------------------------------------
+2. Quick Sort 
+----------------------------------------------
+public class QuickSort {
+    public static void quickSort(int[] arr, int low, int high) {
+        if (low < high) {
+            int pi = partition(arr, low, high);
+            quickSort(arr, low, pi - 1);
+            quickSort(arr, pi + 1, high);
+        }
+    }
+
+    private static int partition(int[] arr, int low, int high) {
+        int pivot = arr[high];
+        int i = low - 1;
+        for (int j = low; j < high; j++) {
+            if (arr[j] < pivot) {
+                i++;
+                // Swap arr[i] and arr[j]
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+        // Swap arr[i+1] and arr[high] (or pivot)
+        int temp = arr[i + 1];
+        arr[i + 1] = arr[high];
+        arr[high] = temp;
+        return i + 1;
+    }
+}
+
+
+
+----------------------------------------------
+----------------------------------------------
+
+3. Selection Sort 
+----------------------------------------------
+public class SelectionSort {
+    public static void selectionSort(int[] arr) {
+        int n = arr.length;
+        for (int i = 0; i < n - 1; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < n; j++) {
+                if (arr[j] < arr[minIndex]) {
+                    minIndex = j;
+                }
+            }
+            // Swap arr[i] and arr[minIndex]
+            int temp = arr[minIndex];
+            arr[minIndex] = arr[i];
+            arr[i] = temp;
+        }
+    }
+}
+
+
+
+----------------------------------------------
+----------------------------------------------
+
+4. Insertion Sort 
+----------------------------------------------
+public class InsertionSort {
+    public static void insertionSort(int[] arr) {
+        int n = arr.length;
+        for (int i = 1; i < n; ++i) {
+            int key = arr[i];
+            int j = i - 1;
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j];
+                j = j - 1;
+            }
+            arr[j + 1] = key;
+        }
+    }
+}
+
+
+
+----------------------------------------------
+----------------------------------------------
+
+5. Merge Sort 
+----------------------------------------------
+
+public class MergeSort {
+    public static void mergeSort(int[] arr, int l, int r) {
+        if (l < r) {
+            int m = l + (r - l) / 2;
+            mergeSort(arr, l, m);
+            mergeSort(arr, m + 1, r);
+            merge(arr, l, m, r);
+        }
+    }
+
+    private static void merge(int[] arr, int l, int m, int r) {
+        int n1 = m - l + 1;
+        int n2 = r - m;
+        int[] L = new int[n1];
+        int[] R = new int[n2];
+        for (int i = 0; i < n1; ++i) {
+            L[i] = arr[l + i];
+        }
+        for (int j = 0; j < n2; ++j) {
+            R[j] = arr[m + 1 + j];
+        }
+        int i = 0, j = 0;
+        int k = l;
+        while (i < n1 && j < n2) {
+            if (L[i] <= R[j]) {
+                arr[k] = L[i];
+                i++;
+            } else {
+                arr[k] = R[j];
+                j++;
+            }
+            k++;
+        }
+        while (i < n1) {
+            arr[k] = L[i];
+            i++;
+            k++;
+        }
+        while (j < n2) {
+            arr[k] = R[j];
+            j++;
+            k++;
+        }
+    }
+}
+
+
+
+----------------------------------------------
+----------------------------------------------
+
+6. Sorting Strings using Bubble Sort
+----------------------------------------------
+public class StringBubbleSort {
+    public static void bubbleSort(String[] arr) {
+        int n = arr.length;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (arr[j].compareTo(arr[j + 1]) > 0) {
+                    // Swap arr[j] and arr[j+1]
+                    String temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+    }
+}
+
+
+
+----------------------------------------------
+----------------------------------------------
+
+8. Bubble Sort for Linked List by Swapping nodes
+----------------------------------------------
+public class LinkedListBubbleSort {
+    public static Node bubbleSort(Node head) {
+        if (head == null || head.next == null) return head;
+        boolean swapped;
+        Node temp;
+        do {
+            swapped = false;
+            Node prev = null;
+            Node current = head;
+            Node next = head.next;
+            while (next != null) {
+                if (current.data > next.data) {
+                    if (prev != null) {
+                        prev.next = next;
+                    } else {
+                        head = next;
+                    }
+                    temp = next.next;
+                    next.next = current;
+                    current.next = temp;
+                    swapped = true;
+                    prev = next;
+                    next = current.next;
+                } else {
+                    prev = current;
+                    current = next;
+                    next = next.next;
+                }
+            }
+        } while (swapped);
+        return head;
+    }
+}
+
+
+
+----------------------------------------------
+----------------------------------------------
+
+9.Bubble Sort On Doubly Linked List
+----------------------------------------------
+
+public class DoublyLinkedListBubbleSort {
+    public static DoublyNode bubbleSort(DoublyNode head) {
+        if (head == null || head.next == null) return head;
+        boolean swapped;
+        DoublyNode temp;
+        do {
+            swapped = false;
+            DoublyNode prev = null;
+            DoublyNode current = head;
+            DoublyNode next = head.next;
+            while (next != null) {
+                if (current.data > next.data) {
+                    if (prev != null) {
+                        prev.next = next;
+                    } else {
+                        head = next;
+                    }
+                    temp = next.next;
+                    next.next = current;
+                    next.prev = prev;
+                    current.next = temp;
+                    current.prev = next;
+                    if (temp != null) {
+                        temp.prev = current;
+                    }
+                    swapped = true;
+                    prev = next;
+                    next = current.next;
+                } else {
+                    prev = current;
+                    current = next;
+                    next = next.next;
+                }
+            }
+        } while (swapped);
+        return head;
+    }
+}
+
+
+
+----------------------------------------------
+----------------------------------------------
+
